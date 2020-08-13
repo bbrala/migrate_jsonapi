@@ -66,6 +66,11 @@ class JsonApi extends DataParserPluginBase implements ContainerFactoryPluginInte
   private $responseParser;
 
   /**
+   * @var \Swis\JsonApi\Client\Collection
+   */
+  private $typesInIncluded;
+
+  /**
    * {@inheritdoc}
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactory $config_factory, ModuleHandler $module_handler) {
@@ -251,6 +256,7 @@ class JsonApi extends DataParserPluginBase implements ContainerFactoryPluginInte
     $responseDocument = $this->getResponseDocument($url);
 
     $this->dataIterator = $responseDocument->getData();
+    $this->typesInIncluded = $responseDocument->getIncluded()->pluck('type')->unique();
 
     if ($responseDocument->getLinks()->offsetExists('next')){
       $this->urls[] = $responseDocument->getLinks()->offsetGet('next')->getHref();
