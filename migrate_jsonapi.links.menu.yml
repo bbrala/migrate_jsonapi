@@ -1,0 +1,5 @@
+migrate_jsonapi.migrate_settings:
+  title: Migrate settings
+  parent: system.admin_config_development
+  route_name: migrate_jsonapi.migrate_settings
+  weight: 10

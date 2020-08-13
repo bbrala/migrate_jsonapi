@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * Migrate file.
+ */
+
+/**
+ * Add log function.
+ */
+function _log_migrate_debug_info($message) {
+  if (function_exists('drush_print')) {
+    drush_print($message);
+  }
+  else {
+    \Drupal::logger('migrate_jsonapi')->info($message);
+  }
+}

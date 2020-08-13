@@ -1,0 +1,9 @@
+{
+    "name": "swisnl/migrate_jsonapi",
+    "require": {
+        "swisnl/json-api-client": "^1.1"
+    },
+    "require-dev": {
+      "php-http/guzzle6-adapter": "^2.0"
+    }
+}
