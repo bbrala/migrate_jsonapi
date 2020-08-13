@@ -120,27 +120,14 @@ class JsonApi extends DataParserPluginBase implements ContainerFactoryPluginInte
    * @param string $url
    *   URL of a JSON feed.
    *
-   * @return array
+   * @return \Swis\JsonApi\Client\Interfaces\DocumentInterface
    *   The selected data to be iterated.
    *
    * @throws \GuzzleHttp\Exception\RequestException
    */
-  protected function getSource($url) {
+  protected function getResponseDocument($url) {
     $response = $this->getDataFetcherPlugin()->getResponse($url);
-
-    $parsedResponse = $this->responseParser->parse($response);
-
-    // Convert objects to associative arrays.
-    $source = json_decode($response, TRUE);
-
-    // If json_decode() has returned NULL, it might be that the data isn't
-    // valid utf8 - see http://php.net/manual/en/function.json-decode.php#86997.
-    if (is_null($source)) {
-      $utf8response = utf8_encode($response);
-      $source = json_decode($utf8response, TRUE);
-    }
-
-    return $source;
+    return $this->responseParser->parse($response);
   }
 
   /**
@@ -214,15 +201,14 @@ class JsonApi extends DataParserPluginBase implements ContainerFactoryPluginInte
     if (!empty($relationships)) {
       if (isset($parts['include'])) {
         $include = explode(',', $parts['include']);
-        $include = array_flip($include);
       }
       else {
         $include = [];
       }
       foreach ($relationships as $relationship) {
-        $include[$relationship] = 1;
+        $include[] = $relationship;
       }
-      $options['query']['include'] = implode(',', array_keys($include));
+      $options['query']['include'] = implode(',', $include);
     }
 
     if (!empty($this->configuration['jsonapi_filters'])) {
@@ -262,12 +248,14 @@ class JsonApi extends DataParserPluginBase implements ContainerFactoryPluginInte
     $url = Url::fromUri($path, $options)->toString();
 
     // (Re)open the provided URL.
-    $source = $this->getSource($url);
-    $this->dataIterator = new \ArrayIterator($this->getSourceData($source));
-    $this->includedIterator = new \ArrayIterator($this->getSourceIncluded($source));
-    if (isset($source['links']['next'])) {
-      $this->urls[] = $source['links']['next']['href'];
+    $responseDocument = $this->getResponseDocument($url);
+
+    $this->dataIterator = $responseDocument->getData();
+
+    if ($responseDocument->getLinks()->offsetExists('next')){
+      $this->urls[] = $responseDocument->getLinks()->offsetGet('next')->getHref();
     }
+
     return TRUE;
   }
 
