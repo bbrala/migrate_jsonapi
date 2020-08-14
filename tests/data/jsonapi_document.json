@@ -1,0 +1,398 @@
+{
+  "data": [
+    {
+      "type": "recipes",
+      "id": "a542e833-edfe-44a3-a6f1-7358b115af4b",
+      "attributes": {
+        "internalId": 1,
+        "isPublished": true,
+        "title": "Frankfurter salad with mustard dressing",
+        "createdAt": "2017-12-31T12:57:13+0100",
+        "updatedAt": "2017-12-31T12:57:13+0100",
+        "isPromoted": true,
+        "path": {
+          "alias": null,
+          "pid": null,
+          "langcode": "en"
+        },
+        "difficulty": "easy",
+        "ingredients": [
+          "675 g (1.5 lb) small new salad potatoes such as Pink Fir Apple",
+          "3 eggs (not too fresh for hard-boiled eggs)",
+          "350 g (12 oz) frankfurters - Siamese cats love Frankfurters!",
+          "1 lettuce",
+          " chopped.  Any type will do",
+          " a Chinese cabbage worked well the last time I made this.",
+          "1 packet of young spinach leaves or rocket leaves",
+          " about 225 g (8 oz)",
+          "A handful of chives",
+          " chopped (if in season)",
+          "Dressing",
+          "3 tablespoons (30 ml) olive oil",
+          "1 tablespoon (15 ml) white wine vinegar",
+          "Pinch of sugar",
+          "Pinch of salt",
+          "Dash of lemon juice",
+          "2 teaspoons (10 ml) American squeezy mustard",
+          "1 teaspoon (5 ml) caraway seeds",
+          " crushed in a pestle and mortar"
+        ],
+        "numberOfServices": null,
+        "preparationTime": 5,
+        "instructions": "Bring the potatoes to boil and simmer for 15 minutes in lightly salted water,Drain, cover and keep warm,Hard-boil the eggs for 12 minutes, refresh in cold water, peel and cut into quarters,With a very sharp knife, make a corkscrew shaped score around frankfurters from one end to the other,Bring to the boil and simmer for 5 minutes, drain and keep warm,Add the dressing ingredients to a bowl and whisk well until combined.  Alternatively use a salad shaker or a screw-topped jar,Mix half of the dressing with the spinach and lettuce leaves and the other half with the potatoes and the frankfurters,Divide the salad amongst 4 large plates and dress with the hard-boiled eggs,Season to taste and serve immediately",
+        "totalTime": 25
+      },
+      "relationships": {
+        "contentType": {
+          "data": {
+            "type": "contentTypes",
+            "id": "ff85086b-db11-4ba6-8eaf-5197d6ad026c"
+          },
+          "links": {
+            "self": "https:\/\/cms.contentacms.io\/api\/recipes\/a542e833-edfe-44a3-a6f1-7358b115af4b\/relationships\/contentType",
+            "related": "https:\/\/cms.contentacms.io\/api\/recipes\/a542e833-edfe-44a3-a6f1-7358b115af4b\/contentType"
+          }
+        },
+        "owner": {
+          "data": {
+            "type": "users",
+            "id": "e12c370f-a118-420b-b096-f5d7a08b5640"
+          },
+          "links": {
+            "self": "https:\/\/cms.contentacms.io\/api\/recipes\/a542e833-edfe-44a3-a6f1-7358b115af4b\/relationships\/owner",
+            "related": "https:\/\/cms.contentacms.io\/api\/recipes\/a542e833-edfe-44a3-a6f1-7358b115af4b\/owner"
+          }
+        },
+        "category": {
+          "data": {
+            "type": "categories",
+            "id": "529406be-17fa-4080-b98d-19d23eaabb7b"
+          },
+          "links": {
+            "self": "https:\/\/cms.contentacms.io\/api\/recipes\/a542e833-edfe-44a3-a6f1-7358b115af4b\/relationships\/category",
+            "related": "https:\/\/cms.contentacms.io\/api\/recipes\/a542e833-edfe-44a3-a6f1-7358b115af4b\/category"
+          }
+        },
+        "image": {
+          "data": {
+            "type": "images",
+            "id": "872aa7b3-1b1d-45d2-8bf9-5dd7cb07238f"
+          },
+          "links": {
+            "self": "https:\/\/cms.contentacms.io\/api\/recipes\/a542e833-edfe-44a3-a6f1-7358b115af4b\/relationships\/image",
+            "related": "https:\/\/cms.contentacms.io\/api\/recipes\/a542e833-edfe-44a3-a6f1-7358b115af4b\/image"
+          }
+        },
+        "tags": {
+          "data": [
+            {
+              "type": "tags",
+              "id": "df453b94-175f-422d-a090-bd5eb2f004f3"
+            }
+          ],
+          "links": {
+            "self": "https:\/\/cms.contentacms.io\/api\/recipes\/a542e833-edfe-44a3-a6f1-7358b115af4b\/relationships\/tags",
+            "related": "https:\/\/cms.contentacms.io\/api\/recipes\/a542e833-edfe-44a3-a6f1-7358b115af4b\/tags"
+          }
+        }
+      },
+      "links": {
+        "self": "https:\/\/cms.contentacms.io\/api\/recipes\/a542e833-edfe-44a3-a6f1-7358b115af4b"
+      }
+    },
+    {
+      "type": "recipes",
+      "id": "84cfaa18-faca-471f-bfa5-fbb8c199d039",
+      "attributes": {
+        "internalId": 2,
+        "isPublished": true,
+        "title": "Majorcan vegetable bake",
+        "createdAt": "2017-12-31T12:57:13+0100",
+        "updatedAt": "2017-12-31T12:57:13+0100",
+        "isPromoted": true,
+        "path": {
+          "alias": null,
+          "pid": null,
+          "langcode": "en"
+        },
+        "difficulty": "easy",
+        "ingredients": [
+          "400g can peeled plum tomatoes",
+          " chopped",
+          "1 tablespoon fresh oregano or marjoram",
+          " chopped",
+          "3 tablespoon olive oil plus a little more to dress the dish with",
+          "6 fat Cloves of garlic (or to taste)",
+          " half peeled and crushed",
+          " the remaining half peeled and roughly chopped",
+          "1 aubergine",
+          " sliced",
+          "1 sweet bell pepper of any colour",
+          "1 large onion",
+          " peeled and sliced",
+          "650g potatoes",
+          " peeled and sliced: Desiree",
+          " King Edward",
+          " Lady Balfour",
+          " Maris Piper",
+          " Melody etc.",
+          "sea salt and freshly ground black pepper"
+        ],
+        "numberOfServices": null,
+        "preparationTime": 15,
+        "instructions": "Add 1.5  tablespoons of the oil to a pan and sizzle the garlic for a minute and then add the tomatoes, oregano, season and simmer for 10 minutes to reduce a little.,Toss the aubergine, pepper and onion in the remaining oil, season and arrange in a baking tray and oven roast for 10 minutes.,Remove from the oven and arrange the potatoes and vegetables in layers.,Pour over the tomato sauce, add a grind of black pepper and a glug of olive oil.,Cover with tin foil and bake for 1 hour, removing the tin-foil half way through.",
+        "totalTime": 25
+      },
+      "relationships": {
+        "contentType": {
+          "data": {
+            "type": "contentTypes",
+            "id": "ff85086b-db11-4ba6-8eaf-5197d6ad026c"
+          },
+          "links": {
+            "self": "https:\/\/cms.contentacms.io\/api\/recipes\/84cfaa18-faca-471f-bfa5-fbb8c199d039\/relationships\/contentType",
+            "related": "https:\/\/cms.contentacms.io\/api\/recipes\/84cfaa18-faca-471f-bfa5-fbb8c199d039\/contentType"
+          }
+        },
+        "owner": {
+          "data": {
+            "type": "users",
+            "id": "b64720ec-a35d-4414-88d3-e8b70ac0baa4"
+          },
+          "links": {
+            "self": "https:\/\/cms.contentacms.io\/api\/recipes\/84cfaa18-faca-471f-bfa5-fbb8c199d039\/relationships\/owner",
+            "related": "https:\/\/cms.contentacms.io\/api\/recipes\/84cfaa18-faca-471f-bfa5-fbb8c199d039\/owner"
+          }
+        },
+        "category": {
+          "data": {
+            "type": "categories",
+            "id": "fa40ad89-e749-44ed-8a96-e0bac344dc76"
+          },
+          "links": {
+            "self": "https:\/\/cms.contentacms.io\/api\/recipes\/84cfaa18-faca-471f-bfa5-fbb8c199d039\/relationships\/category",
+            "related": "https:\/\/cms.contentacms.io\/api\/recipes\/84cfaa18-faca-471f-bfa5-fbb8c199d039\/category"
+          }
+        },
+        "image": {
+          "data": {
+            "type": "images",
+            "id": "240ded64-eeb4-41ea-ba90-34f43633d782"
+          },
+          "links": {
+            "self": "https:\/\/cms.contentacms.io\/api\/recipes\/84cfaa18-faca-471f-bfa5-fbb8c199d039\/relationships\/image",
+            "related": "https:\/\/cms.contentacms.io\/api\/recipes\/84cfaa18-faca-471f-bfa5-fbb8c199d039\/image"
+          }
+        },
+        "tags": {
+          "data": [
+            {
+              "type": "tags",
+              "id": "63c848bb-cc6f-4811-a3a5-124a6a92b08d"
+            },
+            {
+              "type": "tags",
+              "id": "5df20dda-9812-4802-ace3-5e3e066b969d"
+            },
+            {
+              "type": "tags",
+              "id": "5df9456a-18aa-4081-9506-18b07a43d781"
+            },
+            {
+              "type": "tags",
+              "id": "064b178b-00cb-4465-b3f6-de96cd0ef1e0"
+            }
+          ],
+          "links": {
+            "self": "https:\/\/cms.contentacms.io\/api\/recipes\/84cfaa18-faca-471f-bfa5-fbb8c199d039\/relationships\/tags",
+            "related": "https:\/\/cms.contentacms.io\/api\/recipes\/84cfaa18-faca-471f-bfa5-fbb8c199d039\/tags"
+          }
+        }
+      },
+      "links": {
+        "self": "https:\/\/cms.contentacms.io\/api\/recipes\/84cfaa18-faca-471f-bfa5-fbb8c199d039"
+      }
+    }
+  ],
+  "jsonapi": {
+    "version": "1.0",
+    "meta": {
+      "links": {
+        "self": "http:\/\/jsonapi.org\/format\/1.0\/"
+      }
+    }
+  },
+  "links": {
+    "self": "https:\/\/cms.contentacms.io\/api\/recipes?page%5Blimit%5D=2\u0026include=category%2Ctags"
+  },
+  "included": [
+    {
+      "type": "categories",
+      "id": "529406be-17fa-4080-b98d-19d23eaabb7b",
+      "attributes": {
+        "internalId": 1,
+        "name": "Salad",
+        "description": null,
+        "weight": 0,
+        "updatedAt": "2017-12-31T12:57:13+0100",
+        "path": {
+          "alias": null,
+          "pid": null,
+          "langcode": "en"
+        }
+      },
+      "relationships": {
+        "parent": {
+          "data": []
+        }
+      },
+      "links": {
+        "self": "https:\/\/cms.contentacms.io\/api\/categories\/529406be-17fa-4080-b98d-19d23eaabb7b"
+      }
+    },
+    {
+      "type": "tags",
+      "id": "df453b94-175f-422d-a090-bd5eb2f004f3",
+      "attributes": {
+        "internalId": 5,
+        "name": "German",
+        "description": null,
+        "weight": 0,
+        "updatedAt": "2017-12-31T12:57:13+0100",
+        "path": {
+          "alias": null,
+          "pid": null,
+          "langcode": "en"
+        }
+      },
+      "relationships": {
+        "parent": {
+          "data": []
+        }
+      },
+      "links": {
+        "self": "https:\/\/cms.contentacms.io\/api\/tags\/df453b94-175f-422d-a090-bd5eb2f004f3"
+      }
+    },
+    {
+      "type": "categories",
+      "id": "fa40ad89-e749-44ed-8a96-e0bac344dc76",
+      "attributes": {
+        "internalId": 2,
+        "name": "Main course",
+        "description": null,
+        "weight": 0,
+        "updatedAt": "2017-12-31T12:57:13+0100",
+        "path": {
+          "alias": null,
+          "pid": null,
+          "langcode": "en"
+        }
+      },
+      "relationships": {
+        "parent": {
+          "data": []
+        }
+      },
+      "links": {
+        "self": "https:\/\/cms.contentacms.io\/api\/categories\/fa40ad89-e749-44ed-8a96-e0bac344dc76"
+      }
+    },
+    {
+      "type": "tags",
+      "id": "63c848bb-cc6f-4811-a3a5-124a6a92b08d",
+      "attributes": {
+        "internalId": 6,
+        "name": "Vegetable",
+        "description": null,
+        "weight": 0,
+        "updatedAt": "2017-12-31T12:57:13+0100",
+        "path": {
+          "alias": null,
+          "pid": null,
+          "langcode": "en"
+        }
+      },
+      "relationships": {
+        "parent": {
+          "data": []
+        }
+      },
+      "links": {
+        "self": "https:\/\/cms.contentacms.io\/api\/tags\/63c848bb-cc6f-4811-a3a5-124a6a92b08d"
+      }
+    },
+    {
+      "type": "tags",
+      "id": "5df20dda-9812-4802-ace3-5e3e066b969d",
+      "attributes": {
+        "internalId": 7,
+        "name": "Vegetarian",
+        "description": null,
+        "weight": 0,
+        "updatedAt": "2017-12-31T12:57:13+0100",
+        "path": {
+          "alias": null,
+          "pid": null,
+          "langcode": "en"
+        }
+      },
+      "relationships": {
+        "parent": {
+          "data": []
+        }
+      },
+      "links": {
+        "self": "https:\/\/cms.contentacms.io\/api\/tags\/5df20dda-9812-4802-ace3-5e3e066b969d"
+      }
+    },
+    {
+      "type": "tags",
+      "id": "5df9456a-18aa-4081-9506-18b07a43d781",
+      "attributes": {
+        "internalId": 8,
+        "name": "Vegan",
+        "description": null,
+        "weight": 0,
+        "updatedAt": "2017-12-31T12:57:13+0100",
+        "path": {
+          "alias": null,
+          "pid": null,
+          "langcode": "en"
+        }
+      },
+      "relationships": {
+        "parent": {
+          "data": []
+        }
+      },
+      "links": {
+        "self": "https:\/\/cms.contentacms.io\/api\/tags\/5df9456a-18aa-4081-9506-18b07a43d781"
+      }
+    },
+    {
+      "type": "tags",
+      "id": "064b178b-00cb-4465-b3f6-de96cd0ef1e0",
+      "attributes": {
+        "internalId": 9,
+        "name": "Spanish",
+        "description": null,
+        "weight": 0,
+        "updatedAt": "2017-12-31T12:57:13+0100",
+        "path": {
+          "alias": null,
+          "pid": null,
+          "langcode": "en"
+        }
+      },
+      "relationships": {
+        "parent": {
+          "data": []
+        }
+      },
+      "links": {
+        "self": "https:\/\/cms.contentacms.io\/api\/tags\/064b178b-00cb-4465-b3f6-de96cd0ef1e0"
+      }
+    }
+  ]
+}

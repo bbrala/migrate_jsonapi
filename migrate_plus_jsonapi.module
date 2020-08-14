@@ -13,6 +13,6 @@ function _log_migrate_debug_info($message) {
     drush_print($message);
   }
   else {
-    \Drupal::logger('migrate_jsonapi')->info($message);
+    \Drupal::logger('migrate_plus_jsonapi')->info($message);
   }
 }

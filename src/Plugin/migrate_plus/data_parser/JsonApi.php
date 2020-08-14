@@ -1,10 +1,12 @@
 <?php
 
-namespace Drupal\migrate_jsonapi\Plugin\migrate_plus\data_parser;
+namespace Drupal\migrate_plus_jsonapi\Plugin\migrate_plus\data_parser;
 
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Url;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use False\MyClass;
+use Swis\JsonApi\Client\Collection;
 use Swis\JsonApi\Client\Parsers\CollectionParser;
 use Swis\JsonApi\Client\Parsers\DocumentParser;
 use Swis\JsonApi\Client\Parsers\ErrorCollectionParser;
@@ -19,8 +21,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Config\ConfigFactory;
 use Drupal\Core\Extension\ModuleHandler;
 use Drupal\migrate\MigrateException;
-use Drupal\migrate_jsonapi\Form\MigrateSettingsForm;
+use Drupal\migrate_plus_jsonapi\Form\MigrateSettingsForm;
 use Drupal\migrate_plus\DataParserPluginBase;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 
 /**
  * Obtain JSON data for migration.
@@ -61,14 +64,19 @@ class JsonApi extends DataParserPluginBase implements ContainerFactoryPluginInte
   private $moduleHandler;
 
   /**
-   * @var \Swis\JsonApi\Client\Parsers\ResponseParser
+   * @var \Swis\JsonApi\Client\Parsers\DocumentParser
    */
-  private $responseParser;
+  private $documentParser;
 
   /**
-   * @var \Swis\JsonApi\Client\Collection
+   * @var \Symfony\Component\PropertyAccess\PropertyAccessor
    */
-  private $typesInIncluded;
+  private $propertyAccessor;
+
+  /**
+   * @var \Swis\JsonApi\Client\Interfaces\DataInterface
+   */
+  private $dataCollection;
 
   /**
    * {@inheritdoc}
@@ -76,20 +84,23 @@ class JsonApi extends DataParserPluginBase implements ContainerFactoryPluginInte
   public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactory $config_factory, ModuleHandler $module_handler) {
     $this->configFactory = $config_factory;
     $this->moduleHandler = $module_handler;
-    $this->responseParser = $this->createResponseParser();
+    $this->documentParser = DocumentParser::create();
+    $this->propertyAccessor = PropertyAccess::createPropertyAccessorBuilder()
+      ->enableMagicCall()
+      ->getPropertyAccessor();
 
     // Just compatible with base module DataParsePluginBase.
     // todo: Rewrite base class or set our real item selector.
     if (!isset($configuration['item_selector'])) {
-      $configuration['item_selector'] = '';
+      $configuration['item_selector'] = NULL;
     }
 
     if (!isset($configuration['jsonapi_endpoint'])) {
-      throw new MigrateException('JsonAPI endpoint not set.');
+//      throw new MigrateException('JsonAPI endpoint not set.');
     }
 
     $jsonapi_host = $this->configFactory
-      ->get(MigrateSettingsForm::MIGRATE_JSONAPI_SETTINGS)
+      ->get(MigrateSettingsForm::MIGRATE_PLUS_JSONAPI_SETTINGS)
       ->get(MigrateSettingsForm::JSONAPI_REMOTE_HOST);
 
     if (empty($jsonapi_host) && isset($configuration['jsonapi_host'])) {
@@ -97,10 +108,10 @@ class JsonApi extends DataParserPluginBase implements ContainerFactoryPluginInte
     }
 
     if (empty($jsonapi_host)) {
-      throw new MigrateException('JsonAPI host not set.');
+//      throw new MigrateException('JSON:API host not set.');
     }
 
-    $configuration['urls'] = [$jsonapi_host . $configuration['jsonapi_endpoint']];
+//    $configuration['urls'] = [$jsonapi_host . $configuration['jsonapi_endpoint']];
 
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
@@ -120,7 +131,7 @@ class JsonApi extends DataParserPluginBase implements ContainerFactoryPluginInte
   }
 
   /**
-   * Retrieves the JSON data and returns it as an array.
+   * Retrieves the PSR-7 response document and parse the JSON:API document.
    *
    * @param string $url
    *   URL of a JSON feed.
@@ -131,132 +142,21 @@ class JsonApi extends DataParserPluginBase implements ContainerFactoryPluginInte
    * @throws \GuzzleHttp\Exception\RequestException
    */
   protected function getResponseDocument($url) {
-    $response = $this->getDataFetcherPlugin()->getResponse($url);
-    return $this->responseParser->parse($response);
-  }
-
-  /**
-   * Retrieves the JSON data and returns it as an array.
-   *
-   * @param string $source
-   *   URL of a JSON feed.
-   *
-   * @return array
-   *   The selected data to be iterated.
-   *
-   * @throws \GuzzleHttp\Exception\RequestException
-   */
-  protected function getSourceData($source) {
-    $data = [];
-
-    $selectors = explode('/', trim('data/', '/'));
-    foreach ($selectors as $selector) {
-      if (!empty($selector)) {
-        $data = $source[$selector];
-      }
-    }
-
-    return $data;
-  }
-
-  /**
-   * Retrieves the JSON data and returns it as an array.
-   *
-   * @param string $source
-   *   URL of a JSON feed.
-   *
-   * @return array
-   *   The selected data to be iterated.
-   *
-   * @throws \GuzzleHttp\Exception\RequestException
-   */
-  protected function getSourceIncluded($source) {
-    if (!isset($source['included'])) {
-      return [];
-    }
-
-    $included = [];
-
-    // Todo.
-    $selectors = explode('/', trim('included/', '/'));
-    foreach ($selectors as $selector) {
-      if (!empty($selector)) {
-        $included = $source[$selector];
-      }
-    }
-
-    return $included;
+    $response = $this->getDataFetcherPlugin()->getResponseContent($url);
+    return $this->documentParser->parse($response);
   }
 
   /**
    * {@inheritdoc}
    */
   protected function openSourceUrl($url) {
-    $parts = UrlHelper::parse($url);
-    $options['query'] = $parts['query'];
-    $options['fragment'] = $parts['fragment'];
-
-    // Extract all relationship definition and add to URL as included.
-    $relationships = [];
-    foreach ($this->configuration['fields'] as $field) {
-      if (isset($field['relationship'])) {
-        $relationships[] = $field['relationship'];
-      }
-    }
-    if (!empty($relationships)) {
-      if (isset($parts['include'])) {
-        $include = explode(',', $parts['include']);
-      }
-      else {
-        $include = [];
-      }
-      foreach ($relationships as $relationship) {
-        $include[] = $relationship;
-      }
-      $options['query']['include'] = implode(',', $include);
-    }
-
-    if (!empty($this->configuration['jsonapi_filters'])) {
-      $filters = [];
-      foreach ($this->configuration['jsonapi_filters'] as $key => $value) {
-        if ($key == 'groups') {
-          foreach ($value as $v) {
-            if (isset($v['key']) && isset($v['conjunction'])) {
-              $filters['filter'][$v['key']]['group']['conjunction'] = $v['conjunction'];
-            }
-          }
-        }
-        if ($key == 'conditions') {
-          foreach ($value as $v) {
-            if (isset($v['key']) && isset($v['path']) && isset($v['operator'])) {
-              $filters['filter'][$v['key']]['condition']['path'] = $v['path'];
-              if (isset($v['value'])) {
-                $filters['filter'][$v['key']]['condition']['value'] = $v['value'];
-              }
-              $filters['filter'][$v['key']]['condition']['operator'] = $v['operator'];
-              if (isset($v['memberOf'])) {
-                $filters['filter'][$v['key']]['condition']['memberOf'] = $v['memberOf'];
-              }
-            }
-          }
-        }
-      }
-
-      $options['query'] = array_merge($options['query'], $filters);
-    }
-
-    $path = $parts['path'];
-
-    // Add hook_migrate_plus_data_parser_jsonapi_pre_request_alter() to update jsonapi filter or relationships.
-    $this->moduleHandler->alter('migrate_plus_data_parser_jsonapi_pre_request', $path, $options, $this);
-
-    $url = Url::fromUri($path, $options)->toString();
+    $url = $this->modifySourceUrl($url);
 
     // (Re)open the provided URL.
     $responseDocument = $this->getResponseDocument($url);
-
-    $this->dataIterator = $responseDocument->getData();
-    $this->typesInIncluded = $responseDocument->getIncluded()->pluck('type')->unique();
+    $data = $responseDocument->getData();
+    $this->dataCollection = $data;
+    $this->dataIterator = $this->dataCollection->getIterator();
 
     if ($responseDocument->getLinks()->offsetExists('next')){
       $this->urls[] = $responseDocument->getLinks()->offsetGet('next')->getHref();
@@ -269,54 +169,20 @@ class JsonApi extends DataParserPluginBase implements ContainerFactoryPluginInte
    * {@inheritdoc}
    */
   protected function fetchNextRow() {
+    /** @var \Swis\JsonApi\Client\Item $current */
     $current = $this->dataIterator->current();
     if ($current) {
-      foreach ($this->fieldSelectors() as $field_name => $field_info) {
-        if (isset($field_info['relationship'])) {
-          $field_data = $current;
-          // Explode for multiple level relationships, eg: field_thumbnail.image .
-          $relationship_fields = explode('.', $field_info['relationship']);
-
-          // For relationship in multiple levels.
-          if (count($relationship_fields) > 1) {
-            foreach ($relationship_fields as $relationship_field_name) {
-              $field_data = $this->getIncludeObject($field_data, $relationship_field_name);
-            }
+      foreach ($this->fieldSelectors() as $field_name => $selector) {
+        if (strpos($selector, '[*]') !== FALSE && substr_count($selector, '[*]') === 1) {
+          $field_value = $this->fetchArrayOfRelationValues($selector, $current);
+        } else {
+          if (!$this->propertyAccessor->isReadable($current, $selector)) {
+            throw new MigrateException('migrate_plus_jsonapi: Cannot get value with selector "' . $selector . '"');
           }
-          else {
-            // Multiple values is only supported relationship in 1 level.
-            $is_multiple = isset($field_info['multiple']) && $field_info['multiple'];
-            $field_data = $this->getIncludeObject($field_data, $relationship_fields[0], $is_multiple);
-          }
-        }
-        else {
-          $field_data = $current;
+          $field_value = $this->propertyAccessor->getValue($current, $selector);
         }
 
-        if (!is_null($field_data)) {
-          $selector = $field_info['selector'];
-          $field_selectors = explode('/', trim($selector, '/'));
-          if (isset($field_info['multiple']) && $field_info['multiple']) {
-            foreach ($field_selectors as $field_selector) {
-              array_walk($field_data, function (&$v) use ($field_selector) {
-                if (is_array($v) && array_key_exists($field_selector, $v)) {
-                  $v = $v[$field_selector];
-                }
-              });
-            }
-          }
-          else {
-            foreach ($field_selectors as $field_selector) {
-              if (is_array($field_data) && array_key_exists($field_selector, $field_data)) {
-                $field_data = $field_data[$field_selector];
-              }
-              else {
-                $field_data = '';
-              }
-            }
-          }
-        }
-        $this->currentItem[$field_name] = $field_data;
+        $this->currentItem[$field_name] = $field_value;
       }
       if (!empty($this->configuration['include_raw_data'])) {
         $this->currentItem['raw'] = $current;
@@ -326,90 +192,102 @@ class JsonApi extends DataParserPluginBase implements ContainerFactoryPluginInte
   }
 
   /**
-   * Get include values.
+   * @return array
    */
-  private function getIncludeObject($current, $relationship_field_name, $is_multiple = FALSE) {
-    if (!isset($current['relationships'][$relationship_field_name])) {
-      return $current;
-    }
-
-    $relationship_data = $current['relationships'][$relationship_field_name]['data'];
-    if (empty($relationship_data)) {
-      return NULL;
-    }
-    $field_data = [];
-    if (isset($relationship_data['type'])) {
-      $relationships[] = $relationship_data;
-    }
-    else {
-      $relationships = $relationship_data;
-    }
-    foreach ($relationships as $relationship) {
-      foreach ($this->includedIterator as $included) {
-        if ($included['type'] == $relationship['type'] && $included['id'] == $relationship['id']) {
-          if (isset($relationship['meta'])) {
-            $included['meta'] = $relationship['meta'];
+  protected function createDrupalJsonapiFilter(): array {
+    $filters = [];
+    foreach ($this->configuration['jsonapi_drupal_filters'] as $key => $value) {
+      if ($key == 'groups') {
+        foreach ($value as $v) {
+          if (isset($v['key']) && isset($v['conjunction'])) {
+            $filters['filter'][$v['key']]['group']['conjunction'] = $v['conjunction'];
           }
-          $field_data[] = $included;
+        }
+      }
+      if ($key == 'conditions') {
+        foreach ($value as $v) {
+          if (isset($v['key']) && isset($v['path']) && isset($v['operator'])) {
+            $filters['filter'][$v['key']]['condition']['path'] = $v['path'];
+            if (isset($v['value'])) {
+              $filters['filter'][$v['key']]['condition']['value'] = $v['value'];
+            }
+            $filters['filter'][$v['key']]['condition']['operator'] = $v['operator'];
+            if (isset($v['memberOf'])) {
+              $filters['filter'][$v['key']]['condition']['memberOf'] = $v['memberOf'];
+            }
+          }
         }
       }
     }
-    if ($is_multiple) {
-      $field_data = $field_data;
-    }
-    else {
-      $field_data = array_shift($field_data);
-    }
-    return $field_data;
+    return $filters;
   }
 
   /**
-   * Return the selectors used to populate each configured field.
+   * @param string $url
    *
-   * @return string[]
-   *   Array of selectors, keyed by field name.
+   * @return \Drupal\Core\GeneratedUrl|string
    */
-  protected function fieldSelectors() {
-    $fields = [];
-    foreach ($this->configuration['fields'] as $field_info) {
-      if (isset($field_info['selector'])) {
-        $fields[$field_info['name']] = $field_info;
+  protected function modifySourceUrl(string $url) {
+    $parts = UrlHelper::parse($url);
+    $path = $parts['path'];
+
+    $options = [];
+    $options['query'] = $parts['query'];
+    $options['fragment'] = $parts['fragment'];
+
+    if (!empty($this->configuration['jsonapi_drupal_filters'])) {
+      $filters = $this->createDrupalJsonapiFilter();
+      $options['query'] = array_merge($options['query'], $filters);
+    }
+
+    // Add hook_migrate_plus_data_parser_jsonapi_pre_request_alter() to update jsonapi filter or relationships.
+    if (method_exists($this->moduleHandler, 'alter')) {
+      $this->moduleHandler->alter(
+        'migrate_plus_data_parser_jsonapi_pre_request',
+        $path,
+        $options,
+        $this
+      );
+    }
+
+    try {
+      $url = Url::fromUri($path, $options)->toString();
+    } catch (\InvalidArgumentException $e){
+
+    }
+    return $url;
+  }
+
+
+  /**
+   * Fetched an array of values from a relation with the field[*] selector.
+   *
+   * @param string $selector
+   * @param \Swis\JsonApi\Client\Item $current
+   *
+   * @return array
+   * @throws \Drupal\migrate\MigrateException
+   */
+  protected function fetchArrayOfRelationValues(string $selector, \Swis\JsonApi\Client\Item $current): array {
+    $field_value = [];
+    [$collectionSelector, $valueSelector] = explode('[*]', $selector);
+    $valueSelector = ltrim($valueSelector, '.');
+
+    if (!$this->propertyAccessor->isReadable($current, $collectionSelector)) {
+      throw new MigrateException('migrate_plus_jsonapi: Cannot source collection of "' . $selector . '" with selector "' . $collectionSelector . '"');
+    }
+
+    // Get the collection based on selector
+    $collection = $this->propertyAccessor->getValue($current, $collectionSelector);
+    if ($collection instanceof Collection) {
+      foreach ($collection as $item) {
+        $field_value[] = $this->propertyAccessor->getValue($item, $valueSelector);
       }
     }
-    return $fields;
-  }
-
-  /**
-   * Getter function for configuration.
-   */
-  public function getConfiguration() {
-    return $this->configuration;
-  }
-
-
-  /**
-   * @return \Swis\JsonApi\Client\Parsers\ResponseParser
-   */
-  protected function createResponseParser() {
-    $metaParser = new MetaParser();
-    $linksParser = new LinksParser($metaParser);
-    $itemParser = new ItemParser(new TypeMapper(), $linksParser, $metaParser);
-    $errorCollectionParser = new ErrorCollectionParser(
-      new ErrorParser($linksParser, $metaParser)
-    );
-
-    $documentParser = new DocumentParser(
-      $itemParser,
-      new CollectionParser($itemParser),
-      $errorCollectionParser,
-      $linksParser,
-      new JsonapiParser($metaParser),
-      $metaParser
-    );
-
-    return new ResponseParser(
-      $documentParser
-    );
+    else {
+      throw new MigrateException('migrate_plus_jsonapi: Collection selector [*] didn\'t find the collection: "' . $selector . '"');
+    }
+    return $field_value;
   }
 
 }

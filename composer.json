@@ -1,9 +1,21 @@
 {
-    "name": "swisnl/migrate_jsonapi",
-    "require": {
-        "swisnl/json-api-client": "^1.1"
-    },
-    "require-dev": {
-      "php-http/guzzle6-adapter": "^2.0"
+  "name": "drupal/migrate_plus_jsonapi",
+  "description": "Enhancements to core migration support.",
+  "type": "drupal-module",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Björn Brala",
+      "homepage":"https://www.drupal.org/u/bbrala",
+      "role": "Maintainer"
     }
+  ],
+  "require": {
+    "swisnl/json-api-client": "dev-feature/parser-factories",
+    "symfony/property-access": "^3.4|^4.4",
+    "php-http/guzzle6-adapter": "^2.0"
+  },
+  "require-dev": {
+
+  }
 }

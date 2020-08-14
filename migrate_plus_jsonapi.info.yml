@@ -1,0 +1,10 @@
+name: 'Migrate JSON:API'
+type: module
+core_version_requirement: ^8.8 || ^9
+description: 'Provide migrate plugins for migrate from a JSON:APIU source.'
+dependencies:
+  - drupal:migrate
+  - migrate_plus:migrate_plus
+  - migrate_tools:migrate_tools
+
+configure: migrate_plus_jsonapi.migrate_settings

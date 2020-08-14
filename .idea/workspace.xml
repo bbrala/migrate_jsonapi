@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f60e901c-3e37-40ee-af91-d61967d540fe" name="Default Changelist" comment="poging tot implementatie">
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrate_plus_jsonapi.links.menu.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/data/jsonapi_document.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/src/Kernel/Plugin/migrate_plus/data_parser/JsonApiTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/migrate_jsonapi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/migrate_jsonapi.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrate_jsonapi.info.yml" beforeDir="false" afterPath="$PROJECT_DIR$/migrate_plus_jsonapi.info.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrate_jsonapi.links.menu.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrate_jsonapi.module" beforeDir="false" afterPath="$PROJECT_DIR$/migrate_plus_jsonapi.module" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrate_jsonapi.routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/migrate_plus_jsonapi.routing.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/MigrateSettingsForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/MigrateSettingsForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Plugin/migrate_plus/data_parser/JsonApi.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Plugin/migrate_plus/data_parser/JsonApi.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="2" />
+  </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="PhpServers">
+    <servers>
+      <server host="dev.swis.nl" id="d6e80f95-c997-42f4-9467-4d01150611d6" name="dev.swis.nl" use_path_mappings="true">
+        <path_mappings>
+          <mapping local-root="$PROJECT_DIR$/src" remote-root="/home/localcopy/migrate_jsonapi/src" />
+        </path_mappings>
+      </server>
+    </servers>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/illuminate/contracts" />
+      <path value="$PROJECT_DIR$/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/vendor/nyholm/psr7" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/vendor/php-http/message-factory" />
+      <path value="$PROJECT_DIR$/vendor/php-http/promise" />
+      <path value="$PROJECT_DIR$/vendor/php-http/discovery" />
+      <path value="$PROJECT_DIR$/vendor/php-http/guzzle6-adapter" />
+      <path value="$PROJECT_DIR$/vendor/php-http/httplug" />
+      <path value="$PROJECT_DIR$/vendor/voku/portable-ascii" />
+      <path value="$PROJECT_DIR$/vendor/illuminate/support" />
+      <path value="$PROJECT_DIR$/vendor/swisnl/json-api-client" />
+      <path value="$PROJECT_DIR$/vendor/jenssegers/model" />
+      <path value="$PROJECT_DIR$/../drupal" />
+      <path value="$PROJECT_DIR$/../migrate_plus" />
+      <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/property-access" />
+      <path value="$PROJECT_DIR$/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/vendor/symfony/inflector" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="1g30j45AJr0uSdlUBV1vNyifE9I" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/data" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\projecten\migrate_plus_jsonapi\tests\src\Kernsl\Plugin\migrate_plus\data_parser" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\projecten\migrate_plus_jsonapi\tests\data" />
+      <recent name="C:\projecten\migrate_plus_jsonapi\tests\src\Kernsl\Plugin\migrate_plus\data_parser\JsonApiTest.php" />
+      <recent name="C:\projecten\migrate_jsonapi\src" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f60e901c-3e37-40ee-af91-d61967d540fe" name="Default Changelist" comment="" />
+      <created>1597328101035</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1597328101035</updated>
+      <workItem from="1597328102147" duration="12432000" />
+      <workItem from="1597404644770" duration="8767000" />
+    </task>
+    <task id="LOCAL-00001" summary="poging tot implementatie">
+      <created>1597330986585</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1597330986585</updated>
+    </task>
+    <task id="LOCAL-00002" summary="poging tot implementatie">
+      <created>1597331801285</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1597331801285</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="poging tot implementatie" />
+    <option name="LAST_COMMIT_MESSAGE" value="poging tot implementatie" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="725" y="331" key="#Inspections" timestamp="1597406931515">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state x="725" y="331" key="#Inspections/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597406931515" />
+    <state x="805" y="296" key="#PHP" timestamp="1597398130568">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state x="805" y="296" key="#PHP/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597398130568" />
+    <state x="918" y="355" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method1" timestamp="1597413818585">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state x="918" y="355" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method1/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597413818585" />
+    <state x="93" y="93" width="2011" height="1119" key="DiffContextDialog" timestamp="1597404330557">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state x="93" y="93" width="2011" height="1119" key="DiffContextDialog/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597404330557" />
+    <state x="879" y="408" key="FileChooserDialogImpl" timestamp="1597398128759">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state x="879" y="408" key="FileChooserDialogImpl/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597398128759" />
+    <state width="2154" height="454" key="GridCell.Tab.0.bottom" timestamp="1597410750885">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state width="2154" height="454" key="GridCell.Tab.0.bottom/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597410750885" />
+    <state width="2154" height="454" key="GridCell.Tab.0.center" timestamp="1597410750885">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state width="2154" height="454" key="GridCell.Tab.0.center/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597410750885" />
+    <state width="2154" height="454" key="GridCell.Tab.0.left" timestamp="1597410750884">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state width="2154" height="454" key="GridCell.Tab.0.left/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597410750884" />
+    <state width="2154" height="454" key="GridCell.Tab.0.right" timestamp="1597410750885">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state width="2154" height="454" key="GridCell.Tab.0.right/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597410750885" />
+    <state width="2154" height="454" key="GridCell.Tab.1.bottom" timestamp="1597410750885">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state width="2154" height="454" key="GridCell.Tab.1.bottom/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597410750885" />
+    <state width="2154" height="454" key="GridCell.Tab.1.center" timestamp="1597410750885">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state width="2154" height="454" key="GridCell.Tab.1.center/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597410750885" />
+    <state width="2154" height="454" key="GridCell.Tab.1.left" timestamp="1597410750885">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state width="2154" height="454" key="GridCell.Tab.1.left/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597410750885" />
+    <state width="2154" height="454" key="GridCell.Tab.1.right" timestamp="1597410750885">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state width="2154" height="454" key="GridCell.Tab.1.right/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597410750885" />
+    <state width="2154" height="454" key="GridCell.Tab.2.bottom" timestamp="1597410750885">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state width="2154" height="454" key="GridCell.Tab.2.bottom/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597410750885" />
+    <state width="2154" height="454" key="GridCell.Tab.2.center" timestamp="1597410750885">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state width="2154" height="454" key="GridCell.Tab.2.center/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597410750885" />
+    <state width="2154" height="454" key="GridCell.Tab.2.left" timestamp="1597410750885">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state width="2154" height="454" key="GridCell.Tab.2.left/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597410750885" />
+    <state width="2154" height="454" key="GridCell.Tab.2.right" timestamp="1597410750885">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state width="2154" height="454" key="GridCell.Tab.2.right/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597410750885" />
+    <state x="608" y="298" width="1409" height="709" key="SettingsEditor" timestamp="1597413997458">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state x="608" y="298" width="1409" height="709" key="SettingsEditor/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597413997458" />
+    <state x="691" y="386" key="Vcs.Push.Dialog.v2" timestamp="1597331803318">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state x="691" y="386" key="Vcs.Push.Dialog.v2/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597331803318" />
+    <state x="3477" y="567" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597393599757">
+      <screen x="2560" y="0" width="2196" height="1304" />
+    </state>
+    <state x="917" y="567" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597390561825" />
+    <state x="3477" y="567" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/2560.0.2196.1304/0.0.2196.1304@2560.0.2196.1304" timestamp="1597393599757" />
+    <state x="2560" y="0" width="1616" height="809" maximized="true" key="dock-window-1" timestamp="1597414564489">
+      <screen x="2560" y="0" width="2196" height="1304" />
+    </state>
+    <state x="2560" y="0" width="1616" height="809" maximized="true" key="dock-window-1/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597414564489" />
+    <state x="811" y="385" width="575" height="534" key="find.popup" timestamp="1597410750421">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state x="811" y="385" width="575" height="534" key="find.popup/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597410750421" />
+    <state x="901" y="559" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1597330861464">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state x="901" y="559" key="git4idea.remote.GitConfigureRemotesDialog/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597330861464" />
+    <state width="471" height="170" key="javadoc.popup.new" timestamp="1597412786321">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state width="471" height="170" key="javadoc.popup.new/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597412786321" />
+    <state x="761" y="291" width="672" height="678" key="search.everywhere.popup" timestamp="1597411288318">
+      <screen x="0" y="0" width="2196" height="1304" />
+    </state>
+    <state x="761" y="291" width="672" height="678" key="search.everywhere.popup/2560.0.2196.1304/0.0.2196.1304@0.0.2196.1304" timestamp="1597411288318" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/example.php</url>
+          <line>63</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/tests/src/Kernel/Plugin/migrate_plus/data_parser/JsonApiTest.php</url>
+          <line>57</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
