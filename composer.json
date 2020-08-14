@@ -12,10 +12,9 @@
   ],
   "require": {
     "swisnl/json-api-client": "dev-feature/parser-factories",
-    "symfony/property-access": "^3.4|^4.4",
-    "php-http/guzzle6-adapter": "^2.0"
+    "symfony/property-access": "^3.4|^4.4"
   },
   "require-dev": {
-
+    "php-http/guzzle6-adapter": "^2.0"
   }
 }
