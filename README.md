@@ -10,17 +10,48 @@ First install this module and this config your migrate yml file like below:
 
 source:
   plugin: url
-  url:
+  urls:
     - https://cms.contentacms.io/api/recipes?page[limit]=2&include=category,tags
-  jsonapi_drupal_filters:
+  data_fetcher_plugin: jsonapi
+  headers:
+    Accept: application/json
+    User-Agent: Internet Explorer 6
+    Authorization-Key: secret
+    Arbitrary-Header: foobarbaz
+  jsonapi_filters:
+    groups:
+      -
+        key: ag
+        conjunction: OR
+      -
+        key: bg
+        conjunction: and
     conditions:
       -
-        key: tags_filter
-        path: field_tags.name
-        operator: =
-        value: t1
+        key: a
+        path: value
+        operator: STARTS_WITH
+        value: value_a
+        memberOf: ag
+      -
+        key: b
+        path: value
+        operator: STARTS_WITH
+        value: value_b
+        memberOf: ag
+      -
+        key: c
+        path: value
+        operator: STARTS_WITH
+        value: value_c
+        memberOf: bg
+      -
+        key: d
+        path: value
+        operator: STARTS_WITH
+        value: value_d
+
   data_parser_plugin: jsonapi
-  data_fetcher_plugin: http
   ids:
     nid:
       type: integer

@@ -79,6 +79,13 @@ class JsonApi extends DataParserPluginBase implements ContainerFactoryPluginInte
   private $dataCollection;
 
   /**
+   * Extra filters for the requests
+   *
+   * @var array
+   */
+  protected $filters;
+
+  /**
    * {@inheritdoc}
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactory $config_factory, ModuleHandler $module_handler) {
@@ -89,14 +96,13 @@ class JsonApi extends DataParserPluginBase implements ContainerFactoryPluginInte
       ->enableMagicCall()
       ->getPropertyAccessor();
 
-    // Just compatible with base module DataParsePluginBase.
-    // todo: Rewrite base class or set our real item selector.
+    // ItemSelector is not needed
     if (!isset($configuration['item_selector'])) {
       $configuration['item_selector'] = NULL;
     }
 
     if (!isset($configuration['jsonapi_endpoint'])) {
-//      throw new MigrateException('JsonAPI endpoint not set.');
+      throw new MigrateException('JsonAPI endpoint not set.');
     }
 
     $jsonapi_host = $this->configFactory
@@ -108,10 +114,10 @@ class JsonApi extends DataParserPluginBase implements ContainerFactoryPluginInte
     }
 
     if (empty($jsonapi_host)) {
-//      throw new MigrateException('JSON:API host not set.');
+      throw new MigrateException('JSON:API host not set.');
     }
 
-//    $configuration['urls'] = [$jsonapi_host . $configuration['jsonapi_endpoint']];
+    $configuration['urls'] = [$jsonapi_host . $configuration['jsonapi_endpoint']];
 
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
@@ -150,10 +156,11 @@ class JsonApi extends DataParserPluginBase implements ContainerFactoryPluginInte
    * {@inheritdoc}
    */
   protected function openSourceUrl($url) {
-    $url = $this->modifySourceUrl($url);
-
     // (Re)open the provided URL.
     $responseDocument = $this->getResponseDocument($url);
+
+
+
     $data = $responseDocument->getData();
     $this->dataCollection = $data;
     $this->dataIterator = $this->dataCollection->getIterator();
@@ -192,74 +199,6 @@ class JsonApi extends DataParserPluginBase implements ContainerFactoryPluginInte
   }
 
   /**
-   * @return array
-   */
-  protected function createDrupalJsonapiFilter(): array {
-    $filters = [];
-    foreach ($this->configuration['jsonapi_drupal_filters'] as $key => $value) {
-      if ($key == 'groups') {
-        foreach ($value as $v) {
-          if (isset($v['key']) && isset($v['conjunction'])) {
-            $filters['filter'][$v['key']]['group']['conjunction'] = $v['conjunction'];
-          }
-        }
-      }
-      if ($key == 'conditions') {
-        foreach ($value as $v) {
-          if (isset($v['key']) && isset($v['path']) && isset($v['operator'])) {
-            $filters['filter'][$v['key']]['condition']['path'] = $v['path'];
-            if (isset($v['value'])) {
-              $filters['filter'][$v['key']]['condition']['value'] = $v['value'];
-            }
-            $filters['filter'][$v['key']]['condition']['operator'] = $v['operator'];
-            if (isset($v['memberOf'])) {
-              $filters['filter'][$v['key']]['condition']['memberOf'] = $v['memberOf'];
-            }
-          }
-        }
-      }
-    }
-    return $filters;
-  }
-
-  /**
-   * @param string $url
-   *
-   * @return \Drupal\Core\GeneratedUrl|string
-   */
-  protected function modifySourceUrl(string $url) {
-    $parts = UrlHelper::parse($url);
-    $path = $parts['path'];
-
-    $options = [];
-    $options['query'] = $parts['query'];
-    $options['fragment'] = $parts['fragment'];
-
-    if (!empty($this->configuration['jsonapi_drupal_filters'])) {
-      $filters = $this->createDrupalJsonapiFilter();
-      $options['query'] = array_merge($options['query'], $filters);
-    }
-
-    // Add hook_migrate_plus_data_parser_jsonapi_pre_request_alter() to update jsonapi filter or relationships.
-    if (method_exists($this->moduleHandler, 'alter')) {
-      $this->moduleHandler->alter(
-        'migrate_plus_data_parser_jsonapi_pre_request',
-        $path,
-        $options,
-        $this
-      );
-    }
-
-    try {
-      $url = Url::fromUri($path, $options)->toString();
-    } catch (\InvalidArgumentException $e){
-
-    }
-    return $url;
-  }
-
-
-  /**
    * Fetched an array of values from a relation with the field[*] selector.
    *
    * @param string $selector
@@ -270,7 +209,7 @@ class JsonApi extends DataParserPluginBase implements ContainerFactoryPluginInte
    */
   protected function fetchArrayOfRelationValues(string $selector, \Swis\JsonApi\Client\Item $current): array {
     $field_value = [];
-    [$collectionSelector, $valueSelector] = explode('[*]', $selector);
+    list($collectionSelector, $valueSelector) = explode('[*]', $selector);
     $valueSelector = ltrim($valueSelector, '.');
 
     if (!$this->propertyAccessor->isReadable($current, $collectionSelector)) {
